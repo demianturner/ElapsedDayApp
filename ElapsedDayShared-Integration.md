@@ -9,13 +9,15 @@ You've successfully created a Swift Package called `ElapsedDayShared` that conta
 ### Package Structure
 ```
 ElapsedDayApp/
-├── Package.swift                              # Swift Package manifest
-├── Sources/
-│   └── ElapsedDayShared/
-│       └── ElapsedDayModel.swift             # Shared model with public API
-└── Tests/
-    └── ElapsedDaySharedTests/
-        └── ElapsedDayModelTests.swift        # Unit tests
+└── Packages/
+    └── ElapsedDayShared/                     # Package subfolder (keeps root clean)
+        ├── Package.swift                     # Swift Package manifest
+        ├── Sources/
+        │   └── ElapsedDayShared/
+        │       └── ElapsedDayModel.swift    # Shared model with public API
+        └── Tests/
+            └── ElapsedDaySharedTests/
+                └── ElapsedDayModelTests.swift # Unit tests
 ```
 
 ### Key Features
@@ -36,7 +38,7 @@ Open `ElapsedDayApp.xcodeproj` in Xcode
 2. Go to the **Package Dependencies** tab
 3. Click the **+** button
 4. Choose **Add Local...**
-5. Navigate to and select the `ElapsedDayApp` folder (where Package.swift is located)
+5. Navigate to and select the `Packages/ElapsedDayShared` folder (where Package.swift is located)
 6. Click **Add Package**
 
 ### 3. Add Package to First Target
@@ -70,7 +72,7 @@ The package is already imported in both files:
 
 You can run the package tests directly:
 ```bash
-cd /path/to/your/project
+cd /path/to/your/project/Packages/ElapsedDayShared
 swift test
 ```
 

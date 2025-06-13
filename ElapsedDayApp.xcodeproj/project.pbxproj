@@ -9,7 +9,8 @@
 /* Begin PBXBuildFile section */
 		E19D04682DFC8ACC003D6B43 /* ElapsedDayShared in Frameworks */ = {isa = PBXBuildFile; productRef = E19D04672DFC8ACC003D6B43 /* ElapsedDayShared */; };
 		E19D046B2DFC8B3A003D6B43 /* ElapsedDayShared in Frameworks */ = {isa = PBXBuildFile; productRef = E19D046A2DFC8B3A003D6B43 /* ElapsedDayShared */; };
-		E19D046D2DFC8B88003D6B43 /* ElapsedDayShared in Frameworks */ = {isa = PBXBuildFile; productRef = E19D046C2DFC8B88003D6B43 /* ElapsedDayShared */; };
+		E19D04702DFC91E6003D6B43 /* ElapsedDayShared in Frameworks */ = {isa = PBXBuildFile; productRef = E19D046F2DFC91E6003D6B43 /* ElapsedDayShared */; };
+		E19D04722DFC91EF003D6B43 /* ElapsedDayShared in Frameworks */ = {isa = PBXBuildFile; productRef = E19D04712DFC91EF003D6B43 /* ElapsedDayShared */; };
 		E1B2B8572DFC51D8008FB6F9 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B2B8562DFC51D7008FB6F9 /* WidgetKit.framework */; };
 		E1B2B8592DFC51D8008FB6F9 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E1B2B8582DFC51D8008FB6F9 /* SwiftUI.framework */; };
 		E1B2B86A2DFC51D9008FB6F9 /* ElapsedDayWidgetExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = E1B2B8542DFC51D7008FB6F9 /* ElapsedDayWidgetExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -80,6 +81,7 @@
 			files = (
 				E19D04682DFC8ACC003D6B43 /* ElapsedDayShared in Frameworks */,
 				E19D046B2DFC8B3A003D6B43 /* ElapsedDayShared in Frameworks */,
+				E19D04702DFC91E6003D6B43 /* ElapsedDayShared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -89,7 +91,7 @@
 			files = (
 				E1B2B8592DFC51D8008FB6F9 /* SwiftUI.framework in Frameworks */,
 				E1B2B8572DFC51D8008FB6F9 /* WidgetKit.framework in Frameworks */,
-				E19D046D2DFC8B88003D6B43 /* ElapsedDayShared in Frameworks */,
+				E19D04722DFC91EF003D6B43 /* ElapsedDayShared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -149,6 +151,7 @@
 			packageProductDependencies = (
 				E19D04672DFC8ACC003D6B43 /* ElapsedDayShared */,
 				E19D046A2DFC8B3A003D6B43 /* ElapsedDayShared */,
+				E19D046F2DFC91E6003D6B43 /* ElapsedDayShared */,
 			);
 			productName = ElapsedDayApp;
 			productReference = E1B2B8422DFC51BB008FB6F9 /* ElapsedDayApp.app */;
@@ -171,7 +174,7 @@
 			);
 			name = ElapsedDayWidgetExtension;
 			packageProductDependencies = (
-				E19D046C2DFC8B88003D6B43 /* ElapsedDayShared */,
+				E19D04712DFC91EF003D6B43 /* ElapsedDayShared */,
 			);
 			productName = ElapsedDayWidgetExtension;
 			productReference = E1B2B8542DFC51D7008FB6F9 /* ElapsedDayWidgetExtension.appex */;
@@ -205,7 +208,7 @@
 			mainGroup = E1B2B8392DFC51BB008FB6F9;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				E19D04692DFC8B3A003D6B43 /* XCLocalSwiftPackageReference "../ElapsedDayApp" */,
+				E19D046E2DFC91E6003D6B43 /* XCLocalSwiftPackageReference "Packages/ElapsedDayShared" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = E1B2B8432DFC51BB008FB6F9 /* Products */;
@@ -547,9 +550,9 @@
 /* End XCConfigurationList section */
 
 /* Begin XCLocalSwiftPackageReference section */
-		E19D04692DFC8B3A003D6B43 /* XCLocalSwiftPackageReference "../ElapsedDayApp" */ = {
+		E19D046E2DFC91E6003D6B43 /* XCLocalSwiftPackageReference "Packages/ElapsedDayShared" */ = {
 			isa = XCLocalSwiftPackageReference;
-			relativePath = ../ElapsedDayApp;
+			relativePath = Packages/ElapsedDayShared;
 		};
 /* End XCLocalSwiftPackageReference section */
 
@@ -562,9 +565,13 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = ElapsedDayShared;
 		};
-		E19D046C2DFC8B88003D6B43 /* ElapsedDayShared */ = {
+		E19D046F2DFC91E6003D6B43 /* ElapsedDayShared */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = E19D04692DFC8B3A003D6B43 /* XCLocalSwiftPackageReference "../ElapsedDayApp" */;
+			productName = ElapsedDayShared;
+		};
+		E19D04712DFC91EF003D6B43 /* ElapsedDayShared */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = E19D046E2DFC91E6003D6B43 /* XCLocalSwiftPackageReference "Packages/ElapsedDayShared" */;
 			productName = ElapsedDayShared;
 		};
 /* End XCSwiftPackageProductDependency section */
