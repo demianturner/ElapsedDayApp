@@ -7,6 +7,7 @@
 
 import WidgetKit
 import SwiftUI
+import ElapsedDayShared
 
 struct ElapsedDayProvider: TimelineProvider {
     func placeholder(in context: Context) -> ElapsedDayEntry {

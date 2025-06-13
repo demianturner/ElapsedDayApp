@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ElapsedDayShared
 
 struct MainView: View {
     @State private var startDate: Date = ElapsedDayModel.startDate
