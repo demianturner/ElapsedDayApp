@@ -31,17 +31,16 @@ struct ElapsedDayProvider: TimelineProvider {
     }
     
     private func createEntry() -> ElapsedDayEntry {
-        let userDefaults = UserDefaults(suiteName: ElapsedDayModel.appGroupID)
-        
-        let startDate = userDefaults?.object(forKey: "startDate") as? Date ?? ElapsedDayModel.defaultStartDate
-        let label = userDefaults?.string(forKey: "label") ?? ElapsedDayModel.defaultLabel
+        let userDefaults = UserDefaults.standard
+        let startDate = userDefaults.object(forKey: "startDate") as? Date ?? ElapsedDayModel.defaultStartDate
+        let label = userDefaults.string(forKey: "label") ?? ElapsedDayModel.defaultLabel
         
         let daysElapsed = ElapsedDayModel.daysElapsed(from: startDate)
         
         return ElapsedDayEntry(
             date: Date(),
             daysElapsed: daysElapsed,
-            label: ElapsedDayModel.validatedLabel(label)
+            label: ElapsedDayModel.effectiveLabel()
         )
     }
 }
@@ -52,10 +51,10 @@ struct ElapsedDayEntry: TimelineEntry {
     let label: String
 }
 
-struct ElapsedDayWidgetView: View {
+struct ElapsedDayWidgetEntryView: View {
     var entry: ElapsedDayProvider.Entry
     @Environment(\.widgetFamily) var family
-
+    
     var body: some View {
         switch family {
         case .systemSmall:
@@ -75,25 +74,19 @@ private struct SmallWidgetView: View {
         VStack(spacing: 8) {
             Text(entry.label)
                 .font(.caption)
-                .fontWeight(.medium)
                 .foregroundStyle(.secondary)
-                .lineLimit(2)
                 .multilineTextAlignment(.center)
+                .lineLimit(2)
             
             Spacer()
             
-            VStack(spacing: 4) {
-                Text("\(entry.daysElapsed)")
-                    .font(.system(size: 36, weight: .bold, design: .rounded))
-                    .foregroundStyle(.primary)
-                
-                Text(entry.daysElapsed == 1 ? "day" : "days")
-                    .font(.caption)
-                    .fontWeight(.medium)
-                    .foregroundStyle(.secondary)
-            }
+            Text("\(entry.daysElapsed)")
+                .font(.system(size: 32, weight: .bold, design: .rounded))
+                .foregroundStyle(.primary)
             
-            Spacer()
+            Text(entry.daysElapsed == 1 ? "day" : "days")
+                .font(.caption)
+                .foregroundStyle(.secondary)
         }
         .padding()
         .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -105,10 +98,9 @@ private struct MediumWidgetView: View {
     
     var body: some View {
         HStack(spacing: 16) {
-            VStack(alignment: .leading, spacing: 8) {
+            VStack(alignment: .leading, spacing: 4) {
                 Text(entry.label)
                     .font(.headline)
-                    .fontWeight(.semibold)
                     .foregroundStyle(.primary)
                     .lineLimit(2)
                 
@@ -121,12 +113,11 @@ private struct MediumWidgetView: View {
             
             VStack(spacing: 4) {
                 Text("\(entry.daysElapsed)")
-                    .font(.system(size: 48, weight: .bold, design: .rounded))
+                    .font(.system(size: 28, weight: .bold, design: .rounded))
                     .foregroundStyle(.primary)
                 
                 Text(entry.daysElapsed == 1 ? "day" : "days")
                     .font(.caption)
-                    .fontWeight(.medium)
                     .foregroundStyle(.secondary)
             }
         }
@@ -140,11 +131,11 @@ struct ElapsedDayWidget: Widget {
 
     var body: some WidgetConfiguration {
         StaticConfiguration(kind: kind, provider: ElapsedDayProvider()) { entry in
-            ElapsedDayWidgetView(entry: entry)
+            ElapsedDayWidgetEntryView(entry: entry)
                 .containerBackground(.fill.tertiary, for: .widget)
         }
         .configurationDisplayName("Elapsed Days")
-        .description("Shows the number of days elapsed since your chosen date.")
+        .description("Track the number of days since a meaningful date.")
         .supportedFamilies([.systemSmall, .systemMedium])
     }
 }
@@ -153,14 +144,12 @@ struct ElapsedDayWidget: Widget {
     ElapsedDayWidget()
 } timeline: {
     ElapsedDayEntry(date: .now, daysElapsed: 42, label: "Since Wedding")
-    ElapsedDayEntry(date: .now, daysElapsed: 100, label: "Since...")
-    ElapsedDayEntry(date: .now, daysElapsed: 1, label: "Since New Job")
+    ElapsedDayEntry(date: .now, daysElapsed: 100, label: "Days Sober")
 }
 
 #Preview(as: .systemMedium) {
     ElapsedDayWidget()
 } timeline: {
     ElapsedDayEntry(date: .now, daysElapsed: 42, label: "Since Wedding")
-    ElapsedDayEntry(date: .now, daysElapsed: 100, label: "Since...")
-    ElapsedDayEntry(date: .now, daysElapsed: 1, label: "Since New Job")
+    ElapsedDayEntry(date: .now, daysElapsed: 100, label: "Days Sober")
 }

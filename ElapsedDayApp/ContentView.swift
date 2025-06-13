@@ -8,10 +8,10 @@
 import SwiftUI
 
 struct MainView: View {
-    @AppStorage("startDate", store: UserDefaults(suiteName: ElapsedDayModel.appGroupID))
+    @AppStorage("startDate")
     private var startDate: Date = ElapsedDayModel.defaultStartDate
     
-    @AppStorage("label", store: UserDefaults(suiteName: ElapsedDayModel.appGroupID))
+    @AppStorage("label")
     private var label: String = ElapsedDayModel.defaultLabel
     
     var body: some View {
@@ -97,9 +97,13 @@ private struct ElapsedDaysSection: View {
         ElapsedDayModel.daysElapsed(from: startDate)
     }
     
+    private var effectiveLabel: String {
+        ElapsedDayModel.effectiveLabel()
+    }
+    
     var body: some View {
         VStack(spacing: 16) {
-            Text(label)
+            Text(effectiveLabel)
                 .font(.title3)
                 .fontWeight(.medium)
                 .multilineTextAlignment(.center)
