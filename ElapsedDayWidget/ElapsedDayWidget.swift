@@ -31,16 +31,14 @@ struct ElapsedDayProvider: TimelineProvider {
     }
     
     private func createEntry() -> ElapsedDayEntry {
-        let userDefaults = UserDefaults.standard
-        let startDate = userDefaults.object(forKey: "startDate") as? Date ?? ElapsedDayModel.defaultStartDate
-        let label = userDefaults.string(forKey: "label") ?? ElapsedDayModel.defaultLabel
-        
+        let startDate = ElapsedDayModel.startDate
         let daysElapsed = ElapsedDayModel.daysElapsed(from: startDate)
+        let label = ElapsedDayModel.effectiveLabel()
         
         return ElapsedDayEntry(
             date: Date(),
             daysElapsed: daysElapsed,
-            label: ElapsedDayModel.effectiveLabel()
+            label: label
         )
     }
 }
