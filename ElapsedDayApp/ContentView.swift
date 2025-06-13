@@ -8,11 +8,8 @@
 import SwiftUI
 
 struct MainView: View {
-    @AppStorage("startDate")
-    private var startDate: Date = ElapsedDayModel.defaultStartDate
-    
-    @AppStorage("label")
-    private var label: String = ElapsedDayModel.defaultLabel
+    @State private var startDate: Date = ElapsedDayModel.startDate
+    @State private var label: String = ElapsedDayModel.label
     
     var body: some View {
         NavigationView {
@@ -64,6 +61,9 @@ private struct DateSection: View {
                 displayedComponents: .date
             )
             .datePickerStyle(.compact)
+            .onChange(of: startDate) { _, newValue in
+                ElapsedDayModel.startDate = newValue
+            }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
     }
@@ -83,6 +83,7 @@ private struct LabelSection: View {
                     if newValue.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty {
                         label = ElapsedDayModel.defaultLabel
                     }
+                    ElapsedDayModel.label = label
                 }
         }
         .frame(maxWidth: .infinity, alignment: .leading)
